@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "level": 3,
+      "name": "天赋3-1",
+      "desc": "全属性+1",
+      "offset": {
+        "constitution": 1,
+        "intelligence": 1,
+        "luck": 1,
+        "appearance": 1,
+        "wealth": 1,
+        "power": 1
+      }
+    }
+  ]
+}
