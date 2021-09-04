@@ -4,6 +4,8 @@
 
 ### 剧本编写指南
 
+模板在`script/template`目录下。
+
 一个剧本对应一个目录，互相独立，目录下必须具备如下结构：
 
 - demo
@@ -23,14 +25,14 @@
 |     luck     |      运气      |         |
 |  appearance  |      容貌      |         |
 |    power     |      权力      | 初始为0 |
-|   0wealth    |      财富      | 初始为0 |
+|    wealth    |      财富      | 初始为0 |
 |  currentId   | 当前所在时间点 | 初始为0 |
 |    status    |      状态      |         |
 |    talent    |      天赋      |         |
 
 #### config.json（整体配置）
 
-```json
+```
 config.json
 {
   "info": {
@@ -81,7 +83,7 @@ config.json
 1. 可以在本文件中设置所有天赋信息，为了清晰也可以单独建立一个文件夹分开编写。
 2. 词条等级1、2、3递增，暂不可自定义；
 
-```json
+```
 talent.json
 {
   //天赋信息所在目录，目录名称可自定义
@@ -106,7 +108,7 @@ talent.json
 }
 ```
 
-```json
+```
 talent-1.json
 {
   "dir": "talent",
@@ -155,7 +157,7 @@ text.json
 }
 ```
 
-```json
+```
 text-00.json
 {
   "content": [
