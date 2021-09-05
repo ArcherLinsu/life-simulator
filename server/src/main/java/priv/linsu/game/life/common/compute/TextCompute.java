@@ -1,5 +1,6 @@
 package priv.linsu.game.life.common.compute;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Scope;
@@ -30,7 +31,7 @@ public class TextCompute {
      * @param simpleScript
      * @return
      */
-    public String createLifeText(Human human, SimpleScript simpleScript) {
+    public String createLifeText(Human human, SimpleScript simpleScript) throws JsonProcessingException {
         //获取角色所在时间点的剧本信息
         SimpleText simpleText = simpleScript.getSimpleTexts().get(human.getCurrentId());
         if (simpleText == null) {
@@ -56,7 +57,7 @@ public class TextCompute {
         Offset offset = textContent.getOffset();
         offset.setCurrentId(simpleText.getNextId());
         human.fixup(offset);
-        log.info("计算故事点偏移：{}", human);
+        log.info("计算故事点偏移：{}", JSONUtils.toString(human));
         return textContent.getDesc();
     }
 

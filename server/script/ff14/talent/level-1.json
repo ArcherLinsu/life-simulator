@@ -2,27 +2,48 @@
   "content": [
     {
       "level": 1,
-      "name": "天赋1-1",
-      "desc": "智力+4，体质-2",
+      "name": "平凡的玩家",
+      "desc": "平平无奇，没什么属性加成",
       "offset": {
-        "constitution": -2,
-        "intelligence": 4
       }
     },
     {
       "level": 1,
-      "name": "天赋1-2",
-      "desc": "体质+4",
+      "name": "幸运儿",
+      "desc": "运气+4",
       "offset": {
-        "constitution": 4
+        "lucy": 4
       }
     },
     {
       "level": 1,
-      "name": "天赋1-3",
-      "desc": "运气+5",
+      "name": "善于捏脸",
+      "desc": "容貌+2",
       "offset": {
-        "luck": 5
+        "appearance": 2
+      }
+    },
+    {
+      "level": 1,
+      "name": "喜欢存钱",
+      "desc": "财富+1",
+      "offset": {
+        "wealth": 1
+      }
+    },
+    {
+      "level": 1,
+      "name": "不是很擅长玩游戏",
+      "desc": "可能会遇到好心人吧",
+      "offset": {
+      }
+    },
+    {
+      "level": 1,
+      "name": "社畜",
+      "desc": "财富+2",
+      "offset": {
+        "wealth": 2
       }
     }
   ]

@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "配置模板",
+    "name": "测试剧本",
     "author": "林苏",
     "version": "1.0"
   },
@@ -8,7 +8,7 @@
   "end-status": "死亡",
   "talent": {
     "total": 10,
-    "select": 5,
+    "select": 3,
     "make": [
       {
         "level": 1,
@@ -16,7 +16,7 @@
       },
       {
         "level": 2,
-        "probability": 30
+        "probability": 20
       },
       {
         "level": 3,

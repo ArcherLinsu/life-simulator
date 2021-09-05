@@ -1,3 +1,8 @@
+var server = {
+    remote: "http://service.linsusu.cn/game",
+    local: "http://localhost:7001"
+}
+var url = server.remote;
 //记录全局信息
 var current = {
     script: {
@@ -15,12 +20,14 @@ var current = {
         index: 0
     }
 }
+
 //记录当前剧本信息
 function recordScript() {
     current.script.id = urlParam("id")
     current.script.name = urlParam("name");
     current.script.version = urlParam("version")
 }
+
 //加载天赋卡池
 function loadTalents() {
     recordScript()
@@ -28,7 +35,7 @@ function loadTalents() {
         scriptName: current.script.id
     };
     $.ajax({
-        url: "http://localhost:8080/life_simulation/talents",
+        url: url+"/life_simulation/talents",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -47,6 +54,7 @@ function loadTalents() {
         }
     })
 }
+
 //记录选择的天赋
 function recordSelectedTalents() {
     $("input[name='talent']:checked").each(function (index, checked) {
@@ -55,6 +63,7 @@ function recordSelectedTalents() {
     sessionStorage.setItem("currentInfo", JSON.stringify(current))
     $(location).attr("href", "game.html")
 }
+
 //加载人生
 function loadLife() {
     current = JSON.parse(sessionStorage.getItem("currentInfo"))
@@ -77,7 +86,7 @@ function loadLife() {
         selectTalents: selectedTalent
     };
     $.ajax({
-        url: "http://localhost:8080/life_simulation/lifeTexts",
+        url: url+"/life_simulation/lifeTexts",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -87,15 +96,21 @@ function loadLife() {
         }
     })
 }
+
 //防止点击过快
 var canClick = true
+
 //点击时，滚动展示人生记录
 function showLifeText() {
     if (canClick) {
         canClick = false
         if (current.life.content[current.life.index] !== undefined) {
-            $('#lifeTexts').append(buildLifeTextNode(current.life.content[current.life.index]))
-            current.life.index++
+            if (current.life.content[current.life.index] === ""){
+                alert("哎呀，剧本接下来就没了，请等待完善故事树")
+            }else {
+                $('#lifeTexts').append(buildLifeTextNode(current.life.content[current.life.index]))
+                current.life.index++
+            }
         }
         setTimeout(function () {
             canClick = true

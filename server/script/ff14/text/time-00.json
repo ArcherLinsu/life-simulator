@@ -3,7 +3,7 @@
     {
       "id": 0,
       "next-id": 1,
-      "desc": "你出生了，是个普通的男孩",
+      "desc": "你创建了一个猫娘，进入了游戏",
       "condition": {
         "equal": {
         },
@@ -14,47 +14,81 @@
       },
       "offset": {
         "status": {
-          "add": "男孩"
+          "add": "猫魅族"
         }
       }
     },
     {
       "id": 0,
       "next-id": 1,
-      "desc": "你出生了，是个男孩。作为一个健康的孩子，你虽然看起来并不机灵，但是却很可爱",
+      "desc": "你创建了兔娘，进入了游戏",
       "condition": {
         "equal": {
         },
         "less-than": {
-          "intelligence": 2
         },
         "greater-than": {
-          "appearance": 4
         }
       },
       "offset": {
         "status": {
-          "add": "男孩"
+          "add": "兔族"
         }
       }
     },
     {
       "id": 0,
       "next-id": 1,
-      "desc": "你出生了，是个女孩。你虽然看起来十分羸弱，但好在出生于一个富贵家庭，在悉心的照顾下越发健康",
+      "desc": "你不知道怎么创建角色，所以放弃了游戏",
       "condition": {
         "equal": {
-          "talent": "富贵家庭"
         },
         "less-than": {
-          "constitution": 4
+          "intelligence": 4
         },
         "greater-than": {
         }
       },
       "offset": {
         "status": {
-          "add": "女孩"
+          "add": "结束"
+        }
+      }
+    },
+    {
+      "id": 0,
+      "next-id": 1,
+      "desc": "家里网速太慢了，你放弃了游戏",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+          "wealth": 1
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "status": {
+          "add": "结束"
+        }
+      }
+    },
+    {
+      "id": 0,
+      "next-id": 1,
+      "desc": "你未成年，今天星期二",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "status": {
+          "add": "结束"
         }
       }
     }

@@ -1,11 +1,11 @@
 {
   "info": {
-    "name": "配置模板",
+    "name": "艾欧泽亚的日常",
     "author": "林苏",
     "version": "1.0"
   },
   "max-num": 50,
-  "end-status": "死亡",
+  "end-status": "结束",
   "talent": {
     "total": 10,
     "select": 5,

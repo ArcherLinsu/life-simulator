@@ -2,8 +2,8 @@
   "content": [
     {
       "id": 3,
-      "next-id": 5,
-      "desc": "你穿越到异世界，被空气毒死了",
+      "next-id": 4,
+      "desc": "你未成年，今天不能玩游戏",
       "condition": {
         "equal": {
         },

@@ -1,5 +1,8 @@
 package priv.linsu.game.life.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import priv.linsu.game.life.common.compute.TalentCompute;
 import priv.linsu.game.life.common.compute.TextCompute;
@@ -7,6 +10,7 @@ import priv.linsu.game.life.common.manager.ScriptManager;
 import priv.linsu.game.life.model.domain.Human;
 import priv.linsu.game.life.model.domain.talent.TalentContent;
 import priv.linsu.game.life.model.dto.SimpleScript;
+import priv.linsu.game.life.util.JSONUtils;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -14,6 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class MainService {
 
@@ -44,11 +49,12 @@ public class MainService {
      * @param human
      * @param talents
      */
-    public void talentFixUp(Human human, List<TalentContent> talents) {
+    public void talentFixUp(Human human, List<TalentContent> talents) throws JsonProcessingException {
         for (TalentContent talent : talents) {
             human.getTalent().add(talent.getName());
             human.fixup(talent.getOffset());
         }
+        log.info("计算天赋偏移：{}", JSONUtils.toString(human));
     }
 
     /**

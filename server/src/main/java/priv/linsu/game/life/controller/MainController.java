@@ -6,6 +6,7 @@ import priv.linsu.game.life.model.domain.Human;
 import priv.linsu.game.life.model.vo.Request;
 import priv.linsu.game.life.model.vo.Response;
 import priv.linsu.game.life.service.MainService;
+import priv.linsu.game.life.util.JSONUtils;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -47,6 +48,7 @@ public class MainController {
     public Response createLifeTexts(@RequestHeader Map<String, String> header, @RequestBody Request request) throws IOException {
         //创建一个随机人物
         Human human = Human.createByRandom();
+        log.info("生成人物信息：{}", JSONUtils.toString(human));
         //天赋偏移计算
         mainService.talentFixUp(human, request.getSelectTalents());
         return Response.builder()

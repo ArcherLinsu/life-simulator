@@ -1,5 +1,6 @@
 package priv.linsu.game.life.model.domain;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import priv.linsu.game.life.model.domain.offset.Offset;
+import priv.linsu.game.life.util.JSONUtils;
 import priv.linsu.game.life.util.RandomUtils;
 
 import java.util.*;

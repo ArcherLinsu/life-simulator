@@ -2,12 +2,10 @@
   "content": [
     {
       "id": 2,
-      "next-id": 4,
-      "desc": "你越长越大，也越发的漂亮，你的男发小突然告诉他喜欢你",
+      "next-id": 3,
+      "desc": "没有游戏时间了，而且你也没钱，所以结束了游戏",
       "condition": {
         "equal": {
-          "status": "伪娘",
-          "talent": "天人之姿"
         },
         "less-than": {
         },
@@ -15,6 +13,61 @@
         }
       },
       "offset": {
+        "status": {
+          "add": "结束"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "next-id": 3,
+      "desc": "你选择了骑士作为第一个职业",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "status": {
+          "add": "骑士"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "next-id": 3,
+      "desc": "遇上无聊的玩家在送东西（财富+1）",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "wealth": 1
+      }
+    },
+    {
+      "id": 2,
+      "next-id": 3,
+      "desc": "玩了一天，你也没玩明白，下线了再也没登陆",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "status": {
+          "add": "结束"
+        }
       }
     }
   ]
