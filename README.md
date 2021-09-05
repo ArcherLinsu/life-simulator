@@ -1,5 +1,7 @@
 # 人生模拟器 - 自定义剧本版
 
+项目在线演示地址：[人生模拟器 - 自定义剧本版 (linsusu.cn)](http://game.linsusu.cn/life-simulator/index.html)
+
 本项目是受[VickScarlet/lifeRestart: やり直すんだ。そして、次はうまくやる。 (github.com)](https://github.com/VickScarlet/lifeRestart)的启发，完全重写的一个可进行自定义剧本创作的文字版人生模拟器框架。
 
 本项目主要目的是提供一个通用的服务进行不同剧本演绎，避免改动代码的悲剧。
