@@ -1,0 +1,61 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "next-id": 2,
+      "desc": "在你六岁的时候，不幸出了车祸",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+          "lucy": 2
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "status": {
+          "add": "死亡"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "next-id": 2,
+      "desc": "因为你长得太漂亮，父母打算把你当女儿养（容貌+1）",
+      "condition": {
+        "equal": {
+          "status": "男孩"
+        },
+        "less-than": {
+        },
+        "greater-than": {
+          "appearance": 6
+        }
+      },
+      "offset": {
+        "status": {
+          "add": "伪娘"
+        },
+        "appearance": 1
+      }
+    },
+    {
+      "id": 1,
+      "next-id": 3,
+      "desc": "在你六岁的时候，不幸出了车祸，却意外穿越到了一个陌生的地方",
+      "condition": {
+        "equal": {
+          "talent": "天命"
+        },
+        "less-than": {
+        },
+        "greater-than": {
+          "lucy": 10
+        }
+      },
+      "offset": {
+      }
+    }
+  ]
+}

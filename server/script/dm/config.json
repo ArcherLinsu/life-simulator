@@ -1,0 +1,27 @@
+{
+  "info": {
+    "name": "配置模板",
+    "author": "林苏",
+    "version": "1.0"
+  },
+  "max-num": 50,
+  "end-status": "死亡",
+  "talent": {
+    "total": 10,
+    "select": 5,
+    "make": [
+      {
+        "level": 1,
+        "probability": 100
+      },
+      {
+        "level": 2,
+        "probability": 30
+      },
+      {
+        "level": 3,
+        "probability": 10
+      }
+    ]
+  }
+}

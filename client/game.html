@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" href="img/favicon-apple.png">
+    <link rel="icon" href="img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- Material design icons CSS -->
+    <link rel="stylesheet" href="vendor/materializeicon/material-icons.css">
+
+    <!-- aniamte CSS -->
+    <link rel="stylesheet" href="vendor/animatecss/animate.css">
+
+    <!-- swiper carousel CSS -->
+    <link rel="stylesheet" href="vendor/swiper/css/swiper.min.css">
+
+    <!-- daterange CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap-daterangepicker-master/daterangepicker.css">
+
+    <!-- footable CSS -->
+    <link rel="stylesheet" href="vendor/footable-bootstrap/css/footable.bootstrap.min.css">
+
+    <!-- jvector map CSS -->
+    <link rel="stylesheet" href="vendor/jquery-jvectormap/jquery-jvectormap-2.0.3.css">
+
+    <!-- app CSS -->
+    <link id="theme" rel="stylesheet" href="css/purplesidebar.css" type="text/css">
+
+    <title>人生模拟器 - 自定义剧本版</title>
+</head>
+<body class="fixed-header sidebar-right-close sidebar-left-close" onload="loadLife()">
+<div class="wrapper">
+    <!-- content page -->
+    <div class="container main-container">
+        <div class="col-12 col-md-7 col-lg-8 px-0 card no-shadow">
+            <div class="card-header border-bottom">
+                <div class="media w-100 ">
+                    <div class="media-body">
+                        <h5 class="time-title mb-0" id="script-name">动漫社的日常生活</h5>
+                        <p class="mb-0" id="script-version">v1.0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body bg-light-secondary chatview" id="content" onclick="showLifeText()">
+                <ul class="list-group chatlist app" id="lifeTexts">
+                    <li class="list-group-item ">
+                        <div class="media">
+                            <div class="media-body w-auto no-arrow">
+                                开始新人生
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <a href="index.html" class="btn btn-outline-secondary">
+                    结束
+                </a>
+                <a onclick="window.location.reload()" class="btn pink-gradient float-right">
+                    重新来过
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/game.js"></script>
+<script>
+
+</script>
+</body>
+</html>

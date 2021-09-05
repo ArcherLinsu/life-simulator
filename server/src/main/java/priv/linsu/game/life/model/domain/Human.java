@@ -11,6 +11,9 @@ import priv.linsu.game.life.util.RandomUtils;
 
 import java.util.*;
 
+/**
+ * 人物实体
+ */
 @Slf4j
 @Getter
 @Setter
@@ -31,13 +34,19 @@ public class Human {
     private int wealth;
     //权力
     private int power;
-    //当前时间节点
+    //当前时间点
     private int currentId;
     //状态
     private Set<String> status;
     //天赋
     private Set<String> talent;
 
+    /**
+     * 属性偏移
+     *
+     * @param offset
+     * @return
+     */
     public Human fixup(Offset offset) {
         if (offset != null) {
             this.age += Optional.ofNullable(offset.getAge()).orElse(0);
@@ -64,6 +73,11 @@ public class Human {
         return this;
     }
 
+    /**
+     * 随机生成人物信息
+     *
+     * @return
+     */
     public static Human createByRandom() {
         return Human.builder()
                     .age(0)
@@ -75,11 +89,5 @@ public class Human {
                     .status(new HashSet<>())
                     .talent(new HashSet<>())
                     .build();
-    }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(Human.createByRandom().toString());
-        }
     }
 }

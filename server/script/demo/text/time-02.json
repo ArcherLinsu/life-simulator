@@ -1,0 +1,21 @@
+{
+  "content": [
+    {
+      "id": 2,
+      "next-id": 4,
+      "desc": "你越长越大，也越发的漂亮，你的男发小突然告诉他喜欢你",
+      "condition": {
+        "equal": {
+          "status": "伪娘",
+          "talent": "天人之姿"
+        },
+        "less-than": {
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+      }
+    }
+  ]
+}

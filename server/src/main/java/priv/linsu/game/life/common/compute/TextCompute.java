@@ -15,15 +15,28 @@ import priv.linsu.game.life.util.RandomUtils;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 人生记录生成
+ */
 @Slf4j
 @Component
-@Scope("prototype")
 public class TextCompute {
-    public String getText(Human human, SimpleScript simpleScript) {
+    private static final String Separator = ",";
+
+    /**
+     * 生成一条人生记录
+     *
+     * @param human
+     * @param simpleScript
+     * @return
+     */
+    public String createLifeText(Human human, SimpleScript simpleScript) {
+        //获取角色所在时间点的剧本信息
         SimpleText simpleText = simpleScript.getSimpleTexts().get(human.getCurrentId());
         if (simpleText == null) {
             return "";
         }
+        //获取当前时间点所有可选的故事点
         List<TextContent> meetConditionText = new LinkedList<>();
         for (TextContent content : simpleText.getContents()) {
             Condition condition = content.getCondition();
@@ -33,19 +46,29 @@ public class TextCompute {
                 meetConditionText.add(content);
             }
         }
+        //没有可选的故事点
         if (meetConditionText.size() < 1) {
             return "";
         }
         int seed = RandomUtils.randInt(0, meetConditionText.size());
         TextContent textContent = meetConditionText.get(seed);
+        //设置该故事点对角色属性的偏移数据
         Offset offset = textContent.getOffset();
         offset.setCurrentId(simpleText.getNextId());
         human.fixup(offset);
-        log.info("计算故事点偏移：{}",human);
+        log.info("计算故事点偏移：{}", human);
         return textContent.getDesc();
     }
 
+    /**
+     * 是否满足匹配条件
+     *
+     * @param human
+     * @param equal
+     * @return
+     */
     private boolean meetEqual(Human human, ConditionEqual equal) {
+        //没有匹配条件
         if (equal == null) {
             return true;
         }
@@ -74,22 +97,22 @@ public class TextCompute {
             return false;
         }
         if (!Strings.isNullOrEmpty(equal.getStatus())) {
-            if (!equal.getStatus().contains(",")) {
-                if (!human.getStatus().contains(equal.getStatus())) {
-                    return false;
-                }
+            //单个状态条件匹配
+            if (!equal.getStatus().contains(Separator) && !human.getStatus().contains(equal.getStatus())) {
+                return false;
             }
-            String[] statusArray = equal.getStatus().split(",");
-            for (String status : statusArray) {
+            //多个状态条件匹配
+            for (String status : equal.getStatus().split(Separator)) {
                 if (!human.getStatus().contains(status)) {
                     return false;
                 }
             }
-
         }
         if (!Strings.isNullOrEmpty(equal.getTalent())) {
-            String[] talentArray = equal.getTalent().split(",");
-            for (String talent : talentArray) {
+            if (!equal.getTalent().contains(Separator) && !human.getTalent().contains(equal.getTalent())) {
+                return false;
+            }
+            for (String talent : equal.getTalent().split(Separator)) {
                 if (!human.getTalent().contains(talent)) {
                     return false;
                 }
@@ -98,6 +121,13 @@ public class TextCompute {
         return true;
     }
 
+    /**
+     * 是否满足低于的条件
+     *
+     * @param human
+     * @param lessThan
+     * @return
+     */
     private boolean meetLessThan(Human human, ConditionLessThan lessThan) {
         if (lessThan == null) {
             return true;
@@ -126,6 +156,13 @@ public class TextCompute {
         return true;
     }
 
+    /**
+     * 是否满足高于的条件
+     *
+     * @param human
+     * @param greaterThan
+     * @return
+     */
     private boolean meetGreaterThan(Human human, ConditionGreaterThan greaterThan) {
         if (greaterThan == null) {
             return true;
@@ -151,7 +188,6 @@ public class TextCompute {
         if (greaterThan.getPower() != null && human.getPower() < greaterThan.getPower()) {
             return false;
         }
-
         return true;
     }
 }
