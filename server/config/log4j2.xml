@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <properties>
+        <property name="pattern_console">%highlight{%d{yyyy-MM-dd HH:mm:ss:SSS} | %level | %thread | %logger{100} : %msg %n}{FATAL=red, ERROR=red, WARN=yellow, INFO=cyan, DEBUG=white,TRACE=blue}
+        </property>
+        <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss:SSS} | %level | %thread | %logger{35} : %msg %n</property>
+
+        <property name="log_home_it">logs</property>
+        <property name="log_home_prod">logs</property>
+
+        <property name="log_level_it">debug</property>
+        <property name="log_level_prod">info</property>
+    </properties>
+
+    <appenders>
+        <!-- 控制台输出 -->
+        <console name="console" target="SYSTEM_OUT">
+            <patternLayout pattern="${pattern_console}"/>
+        </console>
+        <!-- 日志记录及归档 -->
+        <rollingFile name="log_file"
+                     fileName="${log_home_${sys:spring.profiles.active}:-logs/}/today.log"
+                     filePattern="${log_home_${sys:spring.profiles.active}:-logs/}/backup/%d{yyyy-MM-dd}.%i.log">
+            <patternLayout pattern="${pattern_file}"/>
+            <!-- 归档策略 -->
+            <policies>
+                <!-- 每天归档一次 -->
+                <timeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- 100MB归档一次-->
+                <!--<sizeBasedTriggeringPolicy size="100MB"/>-->
+            </policies>
+            <!-- 清理策略 -->
+            <defaultRolloverStrategy fileIndex="nomax">
+                <!-- 按日期清理归档日志 -->
+                <delete basePath="${log_home_${sys:spring.profiles.active}:-logs/}/backup/" maxDepth="1">
+                    <ifFileName glob="*.log">
+                        <IfLastModified age="7d"/>
+                    </ifFileName>
+                </delete>
+                <!-- 按总大小清理 -->
+                <!--<delete basePath="${log_home_${sys:spring.profiles.active}:-logs/}/backup/" maxDepth="1">-->
+                <!--    <ifFileName glob="*.log">-->
+                <!--        <ifAccumulatedFileSize exceeds="10GB"/>-->
+                <!--    </ifFileName>-->
+                <!--</delete>-->
+            </defaultRolloverStrategy>
+        </rollingFile>
+    </appenders>
+
+    <loggers>
+        <logger name="org.springframework" level="info"/>
+        <root level="${log_level_${sys:spring.profiles.active}:-debug}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="log_file"/>
+        </root>
+    </loggers>
+</configuration>

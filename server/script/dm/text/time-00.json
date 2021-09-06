@@ -3,58 +3,25 @@
     {
       "id": 0,
       "next-id": 1,
-      "desc": "你出生了，是个普通的男孩",
-      "condition": {
-        "equal": {
-        },
-        "less-than": {
-        },
-        "greater-than": {
-        }
-      },
+      "desc": "你开学了"
+    },
+    {
+      "id": 0,
+      "next-id": 1,
+      "desc": "你开学了，但你不想去，自杀了",
       "offset": {
         "status": {
-          "add": "男孩"
+          "add": "end"
         }
       }
     },
     {
       "id": 0,
-      "next-id": 1,
-      "desc": "你出生了，是个男孩。作为一个健康的孩子，你虽然看起来并不机灵，但是却很可爱",
-      "condition": {
-        "equal": {
-        },
-        "less-than": {
-          "intelligence": 2
-        },
-        "greater-than": {
-          "appearance": 4
-        }
-      },
+      "next-id": 2,
+      "desc": "你开学了，但你不想去，你决定退学去复读",
       "offset": {
         "status": {
-          "add": "男孩"
-        }
-      }
-    },
-    {
-      "id": 0,
-      "next-id": 1,
-      "desc": "你出生了，是个女孩。你虽然看起来十分羸弱，但好在出生于一个富贵家庭，在悉心的照顾下越发健康",
-      "condition": {
-        "equal": {
-          "talent": "富贵家庭"
-        },
-        "less-than": {
-          "constitution": 4
-        },
-        "greater-than": {
-        }
-      },
-      "offset": {
-        "status": {
-          "add": "女孩"
+          "add": "复读"
         }
       }
     }

@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+
+BIN_PATH=$(
+  cd "$(dirname "$0")"
+  pwd
+)
+# 文件目录配置
+OUT_FILE="$BIN_PATH/app.out"
+PID_FILE="$BIN_PATH/app.pid"
+CONF_PATH="$BIN_PATH/config"
+LIBS_PATH="$BIN_PATH/libs"
+# 从命令获取运行环境
+ENV_NAME=$2
+# 主类地址
+MAIN_CLASS="priv.linsu.game.life.simulator.Application"
+
+function print_usage() {
+  echo "Usage: service [-f] COMMAND"
+  echo "where COMMAND is one of:"
+  echo "      start         start the service"
+  echo "      stop          stop the service"
+  echo "      restart       restart the service"
+}
+
+# start
+function start() {
+
+  CLASSPATH="$CONF_PATH/:$LIBS_PATH/*"
+
+  if [ ! $ENV_NAME ]; then
+    echo "未指定运行环境，启动失败"
+    exit
+  fi
+
+  if [ -f "$OUT_FILE" ]; then
+    mv -f "$OUT_FILE" "$OUT_FILE"_$(date +%Y%m%d%H%M%S)
+  fi
+
+  echo 'Start the service'
+  echo $CLASSPATH
+  nohup java -Dspring.profiles.active=$ENV_NAME -Ddir.path=$BIN_PATH -classpath $CLASSPATH $MAIN_CLASS >/dev/null 2>&1 &
+  echo $! >"$PID_FILE"
+}
+
+# check pid exists
+function existPid() {
+  P=$1
+  if [ -n "$P" ]; then
+    E=$(ps ax | awk '{ print $1 }' | grep -e "^${P}$")
+    if [ -n "$E" ]; then
+      echo 1
+    else
+      echo 0
+    fi
+  else
+    echo 0
+  fi
+}
+
+# stop
+function stop() {
+  if [ -f "$PID_FILE" ]; then
+    PID=$(cat "$PID_FILE")
+    if [ -n "$PID" ]; then
+      if [ $(existPid "$PID") ]; then
+        echo -e "Stop service, pid=$PID \c"
+        while [ $(existPid "$PID") = 1 ]; do
+          kill "$PID"
+          echo -e ".\c"
+          sleep 1s
+        done
+        rm -f "$PID_FILE"
+        echo " stopped."
+      else
+        rm -f "$PID_FILE"
+        echo "No service to stop. process $PID not exists."
+      fi
+    else
+      rm -f "$PID_FILE"
+      echo "No service to stop. pid file empty."
+    fi
+  else
+    echo "No service to stop. pid file not exist."
+  fi
+}
+
+if [ $# = 0 ]; then
+  print_usage
+  exit
+fi
+
+COMMAND=$1
+# check command
+case $COMMAND in
+# usage flags
+--help | -help | -h)
+  print_usage
+  exit
+  ;;
+-f)
+  FORCE=1
+  shift
+  COMMAND=$1
+  ;;
+esac
+# execute command
+case $COMMAND in
+start)
+  if [ -f "$PID_FILE" ]; then
+    if [ "$FORCE" ]; then
+      stop
+    else
+      echo "Cannot start. exists pid file $PID_FILE"
+      exit
+    fi
+  fi
+  start
+  exit 1
+  ;;
+stop)
+  stop
+  exit 1
+  ;;
+restart)
+  stop
+  start
+  exit 1
+  ;;
+*)
+  print_usage
+  exit
+  ;;
+esac

@@ -2,27 +2,51 @@
   "content": [
     {
       "level": 1,
-      "name": "天赋1-1",
-      "desc": "智力+4，体质-2",
+      "name": "鹏飞附体",
+      "desc": "鹏飞哥哥给你加持了（体质+2，智商-1）",
       "offset": {
-        "constitution": -2,
-        "intelligence": 4
+        "constitution": 2,
+        "intelligence": -1
       }
     },
     {
       "level": 1,
-      "name": "天赋1-2",
-      "desc": "体质+4",
+      "name": "性格暴躁",
+      "desc": "希望你体质好一点（体质+1）",
       "offset": {
-        "constitution": 4
+        "constitution": 2
       }
     },
     {
       "level": 1,
-      "name": "天赋1-3",
-      "desc": "运气+5",
+      "name": "平凡之家",
+      "desc": "平平无奇的卡片",
       "offset": {
-        "luck": 5
+      }
+    },
+    {
+      "level": 1,
+      "name": "经常捡钱但是往往会摔倒",
+      "desc": "体质-1，财富+1",
+      "offset": {
+        "constitution": -1,
+        "wealth": 1
+      }
+    },
+    {
+      "level": 1,
+      "name": "鲨鱼附体",
+      "desc": "自述会增加找到对象的概率，但其实还是看幸运值",
+      "offset": {
+      }
+    },
+    {
+      "level": 1,
+      "name": "加入男德班",
+      "desc": "不是什么好组织（智力-1，颜值+1）",
+      "offset": {
+        "intelligence": -1,
+        "appearance": 1
       }
     }
   ]

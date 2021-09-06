@@ -4,8 +4,8 @@
     "author": "林苏",
     "version": "1.0"
   },
-  "max-num": 50,
-  "end-status": "死亡",
+  "max-num": 100,
+  "end-status": "end",
   "talent": {
     "total": 10,
     "select": 5,

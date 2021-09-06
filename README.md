@@ -10,15 +10,15 @@
 
 目前还没确定好怎么自主上传剧本，如果想要将剧本上传到服务端，请先提交PR把剧本放到`script`目录下，我会不定期更新，或者直接联系我本人也行。
 
-当然有小伙伴反馈json文件编写不太方便（尤其是非码农同学），所以正在考虑更换更简单的方式来写剧本。
+当然有小伙伴反馈json文件编写不太方便（尤其是非码农同学），所以正在考虑更换更简单的方式来写剧本。编写剧本推荐找一个JSON文件编辑器写。
 
 因为是本人是后端开发选手，写前端简直是人类的灾难，界面就凑合看吧……
 
-编写剧本推荐找一个JSON文件编辑器写，有在线的，比如：[JSON在线编辑器-BeJSON.com](https://www.bejson.com/jsoneditoronline/index.html)
-
 ## 1 项目部署
 
-本项目分为服务端和客户端两部，服务端由java11+springboot编写，现在还没整理好代码，整理好之后，直接pull下来应该就能编译打包（猜的，反正跑不起来就是环境问题）。
+本项目分为服务端和客户端两部。
+
+服务端由java11+springboot编写，下载下来，直接maven打包，在服务端解压tar包，使用`./service start it/prod`即可启动；
 
 客户端是H5页面，用bootstrap+jquery编写，实在不会写前端，就这样吧。
 
@@ -116,7 +116,7 @@
 - level：配置天赋卡级别
 - name：配置该天赋卡名称
 - desc：配置该天赋卡说明
-- offset：配置天赋卡对于人物属性的影响；如果是增加，对应属性写正数；如果是降低，对应属性写负数；如果是添加状态，根据示例填写（对于状态（status）的处理计划调整的更简单一些）
+- offset：配置天赋卡对于人物属性的影响；如果是增加，对应属性写正数；如果是降低，对应属性写负数；如果是添加状态填写`状态+`，删除状态填写`状态-`，多个用英文逗号`,`隔开
 
 ```json
 {
@@ -144,10 +144,7 @@
       "desc": "运气+5",
       "offset": {
         "luck": 5,
-        "status": {
-          "add": "幸运护符",
-          "delete":"噩运连连"
-        }
+        "status": ”幸运护符+,厄运连连-"
       }
     }
   ]
@@ -171,11 +168,13 @@
 - id：配置故事点所在时间点的编号
 - next-id：配置该故事点下一个时间点的编号
 - desc：编写该故事点内容
-- condition：配置触发该故事点的条件
+- condition：配置触发该故事点的条件（没有可以不写，如示例1）
   - equal：配置必须完全对应的条件（状态和天赋如果有多个，用英文的逗号`,`分隔）
   - less-than：配置人物指定属性低于一个值的时候触发
   - greater-than：配置人物指定属性高于一个值的时候触发
 - offset：配置该故事点对人物属性的影响
+
+示例1：
 
 ```json
 {
@@ -183,42 +182,73 @@
     {
       "id": 0,
       "next-id": 1,
-      "desc": "你出生了，是个普通的男孩",
+      "desc": "0岁：你出生了"
+    }
+  ]
+}
+```
+
+示例2：
+
+```json
+{
+  "content": [
+    {
+      "id": 0,
+      "next-id": 1,
+      "desc": "0岁：你出生了"
+    },
+    {
+      "id": 0,
+      "next-id": 1,
+      "desc": "0岁：父母不和，你夭折了",
+      "offset": {
+        "status": "死亡+"
+      }
+    },
+    {
+      "id": 0,
+      "next-id": 1,
+      "desc": "0岁：你出生的时候受到了神的加护",
       "condition": {
         "equal": {
-          "status": "",
-          "talent": "",
-          "constitution":,
-          "intelligence":,
-          "luck":,
-          "appearance":,
-          "wealth":,
-          "power":,
-          "currentId":
-        },
-        "less-than": {
-          "constitution":,
-          "intelligence":,
-          "luck":,
-          "appearance":,
-          "wealth":,
-          "power":
-        },
-        "greater-than": {
+          "talent": "天命"
         }
       },
       "offset": {
-        "status": {
-          "add": "男孩",
-          "delete": ""
-        },
-        "constitution":,
-        "intelligence":,
-        "luck":,
-        "appearance":,
-        "wealth":,
-        "power":
+        "status": "神佑+"
       }
     }
   ]
+}
 ```
+
+示例3：
+
+```json
+{
+  "content": [
+    {
+      "id": 1,
+      "next-id": 2,
+      "desc": "因为你长得太漂亮，父母打算把你当女儿养（容貌+1）",
+      "condition": {
+        "equal": {
+          "status": "男孩"
+        },
+        "less-than": {
+          "constitution": 4
+        },
+        "greater-than": {
+          "appearance": 6
+        }
+      },
+      "offset": {
+        "status": "伪娘+",
+        "appearance": 1
+      }
+    }
+  ]
+}
+```
+

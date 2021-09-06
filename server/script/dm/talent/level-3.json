@@ -2,8 +2,8 @@
   "content": [
     {
       "level": 3,
-      "name": "天赋3-1",
-      "desc": "全属性+1",
+      "name": "林苏的加持",
+      "desc": "你受到了林苏的加持（全属性+1）",
       "offset": {
         "constitution": 1,
         "intelligence": 1,
@@ -11,6 +11,14 @@
         "appearance": 1,
         "wealth": 1,
         "power": 1
+      }
+    },
+    {
+      "level": 3,
+      "name": "天人之姿",
+      "desc": "容貌+4",
+      "offset": {
+        "appearance": 4
       }
     }
   ]

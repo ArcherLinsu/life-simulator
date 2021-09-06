@@ -1,8 +1,8 @@
 var server = {
-    remote: "http://service.linsusu.cn/game",
-    local: "http://localhost:7001"
+    remote: "http://service.linsusu.cn/game/life-simulation",
+    local: "http://localhost:7001/life-simulation"
 }
-var url = server.remote;
+var url = server.local;
 //记录全局信息
 var current = {
     script: {
@@ -35,7 +35,7 @@ function loadTalents() {
         scriptName: current.script.id
     };
     $.ajax({
-        url: url+"/life_simulation/talents",
+        url: url+"/talents",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -43,7 +43,7 @@ function loadTalents() {
         success: function (response) {
             //清空天赋列表
             $('#talents').empty();
-            $.each(response.talents, function (index, talent) {
+            $.each(response.data.talents, function (index, talent) {
                 if (talent != null) {
                     //记录卡池信息
                     current.talent.pool.push(talent)
@@ -86,13 +86,13 @@ function loadLife() {
         selectTalents: selectedTalent
     };
     $.ajax({
-        url: url+"/life_simulation/lifeTexts",
+        url: url+"/lifeTexts",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify(data),
         success: function (response) {
-            current.life.content = response.lifeTexts
+            current.life.content = response.data.lifeTexts
         }
     })
 }

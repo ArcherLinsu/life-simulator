@@ -5,12 +5,8 @@
       "next-id": 2,
       "desc": "在你六岁的时候，不幸出了车祸",
       "condition": {
-        "equal": {
-        },
         "less-than": {
           "lucy": 2
-        },
-        "greater-than": {
         }
       },
       "offset": {
@@ -26,8 +22,6 @@
       "condition": {
         "equal": {
           "status": "男孩"
-        },
-        "less-than": {
         },
         "greater-than": {
           "appearance": 6
@@ -45,16 +39,9 @@
       "next-id": 3,
       "desc": "在你六岁的时候，不幸出了车祸，却意外穿越到了一个陌生的地方",
       "condition": {
-        "equal": {
-          "talent": "天命"
-        },
-        "less-than": {
-        },
         "greater-than": {
           "lucy": 10
         }
-      },
-      "offset": {
       }
     }
   ]

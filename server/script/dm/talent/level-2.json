@@ -2,18 +2,24 @@
   "content": [
     {
       "level": 2,
-      "name": "天赋2-1",
-      "desc": "体质+6",
+      "name": "猫熊附体",
+      "desc": "奇奇怪怪的卡片，也不知道有什么用",
       "offset": {
-        "constitution": 6
       }
     },
     {
       "level": 2,
-      "name": "天赋2-2",
-      "desc": "容貌+2",
+      "name": "万年单身",
+      "desc": "你被强化了（体质+4）",
       "offset": {
-        "appearance": 6
+        "constitution": 4
+      }
+    },
+    {
+      "level": 2,
+      "name": "怪异的强者之力",
+      "desc": "部分区域毛发生长出现异常？",
+      "offset": {
       }
     }
   ]

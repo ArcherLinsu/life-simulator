@@ -2,12 +2,11 @@
   "content": [
     {
       "id": 2,
-      "next-id": 4,
-      "desc": "你越长越大，也越发的漂亮，你的男发小突然告诉他喜欢你",
+      "next-id": 2,
+      "desc": "你复读非常努力",
       "condition": {
         "equal": {
-          "status": "伪娘",
-          "talent": "天人之姿"
+          "status": "复读"
         },
         "less-than": {
         },
@@ -15,6 +14,24 @@
         }
       },
       "offset": {
+      }
+    },
+    {
+      "id": 2,
+      "next-id": 1,
+      "desc": "但你最后又回到了311",
+      "condition": {
+        "equal": {
+        },
+        "less-than": {
+        },
+        "greater-than": {
+        }
+      },
+      "offset": {
+        "status": {
+          "delete": "复读"
+        }
       }
     }
   ]
